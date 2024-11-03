@@ -1,0 +1,41 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Example Page">
+  <div class="p-4 space-y-6">
+    <!-- Main Heading -->
+    <h1 class="text-4xl font-bold text-center text-primary">Welcome to the Example Page</h1>
+    
+    <!-- Introductory Text -->
+    <p class="text-lg text-gray-700 text-center">
+      This page showcases various components and layout techniques to create a mobile-friendly Astro page.
+    </p>
+
+    <!-- Featured Image -->
+    <div class="flex justify-center">
+      <img src="/images/example-image.jpg" alt="Example image" class="rounded-lg shadow-lg max-w-full h-auto" />
+    </div>
+
+    <!-- Section with List of Features -->
+    <section class="space-y-2">
+      <h2 class="text-2xl font-semibold text-primary">Features</h2>
+      <ul class="list-disc list-inside space-y-1 text-gray-800">
+        <li>Responsive, mobile-first design with Tailwind CSS</li>
+        <li>Reusable Layout component for consistent styling</li>
+        <li>Clear structure for easy content organization</li>
+        <li>Button with primary and hover states</li>
+        <li>Support for images and multimedia content</li>
+      </ul>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
+      <h3 class="text-xl font-bold text-primary mb-2">Get Started Today!</h3>
+      <p class="text-gray-600 mb-4">Take the first step towards building your own Astro project with ease.</p>
+      <button class="w-full py-2 px-4 text-white bg-primary rounded-lg hover:bg-primary-dark transition-colors">
+        Join Now
+      </button>
+    </section>
+  </div>
+</Layout>
