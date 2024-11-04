@@ -3,6 +3,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 
 const Login: React.FC = () => {
+  //chage page to homes
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     window.location.href = '/homes';
