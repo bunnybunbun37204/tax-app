@@ -10,7 +10,7 @@ export const Counter = () => {
   const increment = () => {
     setCount(count + 1);
     demo.set(!$demo); // set value
-  }
+  };
   const decrement = () => setCount(count - 1);
 
   return (
