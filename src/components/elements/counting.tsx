@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { Button } from '../ui/button';
+import { useStore } from '@nanostores/react';
+import { demo } from '@/stores';
 
 export const Counter = () => {
   const [count, setCount] = useState(0);
+  const $demo = useStore(demo); // get value
 
-  const increment = () => setCount(count + 1);
+  const increment = () => {
+    setCount(count + 1);
+    demo.set(!$demo); // set value
+  }
   const decrement = () => setCount(count - 1);
 
   return (
