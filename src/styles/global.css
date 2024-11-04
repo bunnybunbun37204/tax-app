@@ -43,7 +43,7 @@
     display: block;
   }
   body {
-    background-image: url("/public/asset/pinkybg.webp");
+    background-image: url("/public/assets/pinkybg.webp");
     background-size: cover;
     background-position: center;
     max-width: 440px;
