@@ -3,6 +3,10 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 
 const Login: React.FC = () => {
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    window.location.href = '/homes';
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-pink-100">
       <div className="w-full max-w-xs p-8">
@@ -24,8 +28,8 @@ const Login: React.FC = () => {
           <div>
             <button
               type="submit"
-              className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none"
-            >
+              onClick={handleSubmit}
+              className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none">
               Log in
             </button>
           </div>
@@ -42,8 +46,7 @@ const Login: React.FC = () => {
           <div>
             <button
               type="button"
-              className="w-full py-2 text-pink-600 bg-[#e4b0b9] rounded-md hover:bg-pink-300 focus:outline-none"
-            >
+              className="w-full py-2 text-white bg-[#e4b0b9] rounded-md hover:bg-pink-300 focus:outline-none">
               Create new account
             </button>
           </div>
