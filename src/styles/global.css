@@ -27,20 +27,11 @@
   p {
     @apply font-notosansthai text-[16px] leading-[28px] font-normal;
   }
-  p-detail {
+  .p-detail {
     @apply font-notosansthai text-[14px] leading-[24px] font-normal;
   }
-  p-small {
+  .p-small {
     @apply font-notosansthai text-[14px] leading-[20px] font-normal;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  p,
-  p-detail,
-  p-small {
-    display: block;
   }
   body {
     background-image: url("/assets/pinkybg.webp");
