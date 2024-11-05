@@ -32,7 +32,7 @@ const nav = () => {
             </a>
             <a href="/add-deduction">
               <p className="flex w-[150px] detail rounded-[6px] h-[40px] text-white items-center justify-center text-center bg-blood">
-                เพิ่มรายได้
+                เพิ่มค่าลดหย่อน
               </p>
             </a>
           </PopoverContent>
