@@ -1,0 +1,16 @@
+---
+import SegmentControl from "@/components/elements/Segmentcontrol"
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Userdata">
+    <>
+    <div class="h-12 justify-start items-center gap-4 inline-flex mx-4">
+        <img src ="public/Vector1.svg" class="w-12 h-12 justify-center items-center gap-2.5 flex"/>
+        <div class="text-[#c34e5e] text-xl font-bold">PureTax</div>
+    </div>
+    <div>
+        <div class="mx-4 w-[350px] text-blood text-xl font-semibold font-['Noto Sans Thai'] leading-7 my-6">กรอกข้อมูลผู้เสียภาษี</div>
+        <SegmentControl/>
+    </div>
+</Layout>
