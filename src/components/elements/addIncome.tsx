@@ -90,7 +90,7 @@ export const AddIncomeForm = () => {
   return (
     <div className="px-5 first-line:flex flex-col">
       {/* header */}
-      <div className="text-blood text-start text-xl font-semibold font-notosansthai leading-7">
+      <div className="text-blood text-start text-xl font-semibold font-notosansthai mb-4">
         เพิ่มรายได้หลังหักภาษี ณ ที่จ่าย
       </div>
       <Tabs value={tab} onValueChange={onTabChange}>
