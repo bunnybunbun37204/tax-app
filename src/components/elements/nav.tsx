@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 const nav = () => {
   return (
-    <div className="flex w-[393px] h-[82px] bg-sakura justify-between py-2">
+    <div className="flex w-full h-[82px] bg-sakura justify-between py-2">
       <a href="/homes">
         <div className="flex w-[74px] gap-1 flex-col items-center text-white">
           <House />
