@@ -1,4 +1,9 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import { AddIncomeForm } from '@/components/elements/addIncome';
 ---
-<AddIncomeForm client:load/>
+<Layout title="Ju Maa">
+	<main>
+        <AddIncomeForm client:load/>
+	</main>
+</Layout>
