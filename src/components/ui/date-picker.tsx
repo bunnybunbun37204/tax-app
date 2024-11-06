@@ -42,10 +42,10 @@ export function DatePicker({
   };
 
   const handleYearChange = (year: string) => {
-    const newDate = setYear(date, parseInt(year));
+    const newDate = setYear(date, Number.parseInt(year));
     setDate(newDate);
   };
-  const [Default, setDefault] = React.useState<Boolean>(false);
+  const [Default, setDefault] = React.useState<boolean>(false);
 
   const handleSelect = (selectedData: Date | undefined) => {
     if (selectedData) {
