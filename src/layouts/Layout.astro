@@ -3,8 +3,9 @@ interface Props {
   title: string;
 }
 
+import Header from '@/components/elements/Header.astro';
+import Nav from '@/components/elements/nav';
 import '@/styles/global.css';
-
 const { title } = Astro.props;
 ---
 
@@ -19,8 +20,11 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-white">
-    <div class="max-w-md mx-auto w-full">
-      <slot />
+    <div class="flex flex-col h-full max-w-md mx-auto w-full justify-between">
+      <div class="flex flex-col gap-[18px]">
+      <Header/>
+      </div>
+      <Nav client:load/>
     </div>
   </body>
 </html>
