@@ -1,4 +1,4 @@
-import { Salad, Wallet } from "lucide-react";
+import { Wallet } from "lucide-react";
 import { Coins } from "lucide-react";
 import { ChartLine } from "lucide-react";
 import { Building2 } from "lucide-react";
@@ -7,17 +7,21 @@ import { Folders } from "lucide-react";
 import { SquareDashed } from "lucide-react";
 import { Paperclip } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useState } from "react";
 
 export const AddIncomeForm = () => {
@@ -29,6 +33,7 @@ export const AddIncomeForm = () => {
   const [freelance, setFreelance] = useState("");
   const [contract, setContract] = useState("");
   const [other, setOther] = useState("");
+  const [openAlert, setOpenAlert] = useState(false);
 
   const [files, setFiles] = useState<{
     salaryFile: File | null;
@@ -51,7 +56,7 @@ export const AddIncomeForm = () => {
     setTab(value);
   };
   const handleSubmitted = () => {
-    const parseOrZero = (value: string) => parseFloat(value) || 0;
+    const parseOrZero = (value: string) => Number.parseFloat(value) || 0;
 
     const sumSalary =
       parseOrZero(salary) +
@@ -116,7 +121,7 @@ export const AddIncomeForm = () => {
   };
 
   return (
-    <div className="px-5 first-line:flex flex-col">
+    <div className="flex flex-col ">
       {/* header */}
       <div className="text-blood text-start text-xl font-semibold font-notosansthai mb-4">
         เพิ่มรายได้หลังหักภาษี ณ ที่จ่าย
@@ -218,8 +223,8 @@ export const AddIncomeForm = () => {
             </CardContent>
             <CardFooter className="w-full p-0">
               <Button
-                onClick={handleSubmitted}
-                className="text-white h-10 text-sm font-medium font-notosansthai bg-blood rounded-md justify-center items-center inline-flex w-full hover:cursor-pointer"
+                onClick={() => setOpenAlert(true)}
+                className="text-white h-10 text-sm font-medium font-notosansthai bg-blood rounded-md justify-center items-center inline-flex w-full hover:cursor-pointer hover:bg-sakura"
               >
                 ยืนยันข้อมูล
               </Button>
@@ -357,8 +362,8 @@ export const AddIncomeForm = () => {
             </CardContent>
             <CardFooter className="w-full p-0">
               <Button
-                onClick={handleSubmittedFile}
-                className="text-white h-10 text-sm font-medium font-notosansthai bg-blood rounded-md justify-center items-center inline-flex w-full hover:cursor-pointer"
+                onClick={() => setOpenAlert(true)}
+                className="text-white h-10 text-sm font-medium font-notosansthai bg-blood rounded-md justify-center items-center inline-flex w-full hover:cursor-pointer hover:bg-sakura"
               >
                 ยืนยันข้อมูล
               </Button>
@@ -366,6 +371,29 @@ export const AddIncomeForm = () => {
           </Card>
         </TabsContent>
       </Tabs>
+
+      <AlertDialog open={openAlert} onOpenChange={setOpenAlert}>
+        <AlertDialogContent className="max-w-[360px] p-2 border-blood gap-1">
+          <AlertDialogTitle className="text-blood text-xl font-notosansthai px-2 pt-2">
+          ยืนยันข้อมูล ?
+          </AlertDialogTitle>
+          <AlertDialogDescription className="text-sandy text-sm font-notosansthai px-4 mb-2">
+            กรุณาตรวจสอบข้อมูลก่อนกดยืนยัน
+          </AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="w-20 text-blood hover:bg-sakura hover:text-blood">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                handleSubmitted();
+                handleSubmittedFile();
+              }}
+              className="bg-blood w-20 border-transparent hover:bg-sakura"
+            >
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
