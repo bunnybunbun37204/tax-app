@@ -34,9 +34,6 @@
     @apply font-notosansthai text-[14px] leading-[20px] font-normal;
   }
   body {
-    background-image: url("/assets/pinkybg.webp");
-    background-size: cover;
-    background-position: center;
     min-width: max-content;
     height: 100lvh;
     overflow: hidden;
@@ -44,5 +41,10 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+  }
+  .background {
+    background-image: url("/assets/pinkybg.webp");
+    background-size: cover;
+    background-position: center;
   }
 }

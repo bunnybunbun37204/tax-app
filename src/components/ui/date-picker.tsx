@@ -16,7 +16,7 @@ interface DatePickerProps {
 }
 export function DatePicker({
   startYear = getYear(new Date()) - 100,
-  endYear = getYear(new Date()) + 100,
+  endYear = getYear(new Date()),
 }: DatePickerProps) {
   const [date, setDate] = React.useState<Date>(new Date());
 
@@ -60,7 +60,7 @@ export function DatePicker({
         <Button
           variant={'outline'}
           className={cn(
-            'min-w-full h-[40px] justify-start text-left font-mono border-[1px] text-blood border-blood hover:text-blood hover:bg-white',
+            'min-w-full h-[40px] justify-start text-left border-[1px] text-blood border-blood hover:text-blood hover:bg-white',
             !date && 'text-muted-foreground',
           )}>
           <CalendarIcon className="mr-2 h-4 w-4" />
