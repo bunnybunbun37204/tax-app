@@ -37,7 +37,7 @@
     background-image: url("/assets/pinkybg.webp");
     background-size: cover;
     background-position: center;
-    max-width: 440px;
+    min-width: max-content;
     height: 100lvh;
     overflow: hidden;
     display: flex;
