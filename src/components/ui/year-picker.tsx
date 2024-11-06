@@ -23,7 +23,7 @@ export function YearPicker({
 
   return (
     <Select onValueChange={handleYearChange} value={date ? getYear(date).toString() : undefined}>
-      <SelectTrigger className="w-full p-detail text-blood border-blood flex items-center justify-between">
+      <SelectTrigger className="w-full p-detail text-blood border-blood flex items-center justify-between ring-offset-transparent focus:ring-transparent  focus:ring-offset-transparent ">
         <div className="flex items-center">
           <CalendarIcon className="mr-2 h-4 w-4 text-blood" />
           <SelectValue

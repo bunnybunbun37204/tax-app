@@ -3,8 +3,19 @@ import { CircleCheck } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DatePicker } from '@/components/ui/date-picker';
 import { YearPicker } from '../ui/year-picker';
+import { useState } from 'react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
-const personalDeduction = () => {
+export const PersonalDeductions = () => {
+  const [openAlert, setOpenAlert] = useState(false);
   return (
     <div className="flex flex-col gap-3">
       <h4 className="text-blood">กรอกค่าลดหย่อน - ส่วนตัว</h4>
@@ -113,11 +124,30 @@ const personalDeduction = () => {
         </div>
       </div>
 
-      <Button className="bg-blood hover:bg-sakura">
+      <Button onClick={() => setOpenAlert(true)} className="bg-blood hover:bg-sakura">
         <p className="p-small">ยืนยันข้อมูล</p>
       </Button>
+
+      <AlertDialog open={openAlert} onOpenChange={setOpenAlert}>
+        <AlertDialogContent className="max-w-[360px] p-2 border-blood gap-1">
+          <AlertDialogTitle className="text-blood text-lg font-notosansthai px-2 pt-2">
+            ยืนยันข้อมูล ?
+          </AlertDialogTitle>
+          <AlertDialogDescription className="text-sandy text-sm font-notosansthai px-2 mb-2">
+            กรุณาตรวจสอบข้อมูลก่อนกดยืนยัน
+          </AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="w-20 text-blood hover:bg-sakura hover:bg-opacity-20 border-blood hover:text-blood text-sm font-notosansthai">
+              ย้อนกลับ
+            </AlertDialogCancel>
+            <a href="/home">
+              <AlertDialogAction className="bg-blood w-20 border-transparent hover:bg-sakura text-sm font-notosansthai">
+                ยืนยัน
+              </AlertDialogAction>
+            </a>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
-
-export default personalDeduction;

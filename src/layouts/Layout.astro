@@ -5,7 +5,6 @@ interface Props {
 
 import Header from '@/components/elements/Header.astro';
 import Nav from '@/components/elements/nav';
-import PersonalDeduction from '@/components/elements/personalDeduction';
 import '@/styles/global.css';
 const { title } = Astro.props;
 ---
@@ -24,7 +23,7 @@ const { title } = Astro.props;
     <div class="background flex flex-col h-full max-w-md mx-auto w-full justify-between">
       <div class="flex flex-col gap-[18px] px-[25px]">
       <Header/>
-      <PersonalDeduction client:load/>
+      <slot/>
       </div>
       <Nav client:load/>
     </div>
