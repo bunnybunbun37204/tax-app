@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { House, Plus, ListPlus, BarChart2, User } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
