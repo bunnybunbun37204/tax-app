@@ -12,7 +12,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from '@/components/ui/select';
 
 const UserdataComponent = () => {
   const [tab, settab] = useState('นาง');
@@ -32,7 +32,6 @@ const UserdataComponent = () => {
 
   return (
     <div className="flex flex-col mx-4 font-mono ">
-      
       <label htmlFor="prefix" className="text-sm font-medium mb-2">
         คำนำหน้าชื่อ<span className="text-red-500">*</span>
       </label>
@@ -98,7 +97,7 @@ const UserdataComponent = () => {
           required
           maxLength={13}
         />
-        <DatePicker onDateChange={setIdExpiredDate}/>
+        <DatePicker onDateChange={setIdExpiredDate} />
         <Input
           name="back_id"
           type="text"
@@ -112,9 +111,7 @@ const UserdataComponent = () => {
           ต่อไป
         </Button>
       </form>
-      
     </div>
-    
   );
 };
 
