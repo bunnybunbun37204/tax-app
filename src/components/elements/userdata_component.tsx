@@ -1,70 +1,79 @@
-import React, { useState ,useEffect } from 'react';
+import type React from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { DatePicker } from '@/components/ui/data-picker';
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
-import {DatePicker} from "@/components/ui/data-picker";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 const UserdataComponent = () => {
-  
-  const [tab,settab] = useState('นาง');
-  
-  const handlesubmit = (e:any)=>{
+  const [tab, settab] = useState('นาง');
+  const [idExpiredDate, setIdExpiredDate] = useState<Date | null>(null);
+
+  const handlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const fname = e.target.name;
-    const lname = e.target.lastname;
-    const personal_id = e.target.id;
-    const id_expired_date = e.target.id_expired_date;
-    const back_id = e.target.back_id;
+    const formData = new FormData(e.currentTarget);
+    const fname = formData.get('name');
+    const lname = formData.get('lastname');
+    const personal_id = formData.get('id');
+    const id_expired_date = idExpiredDate;
+    const back_id = formData.get('back_id');
     const prefix = tab;
-    console.log(fname)
-    
-  }
-  
-  
+  };
+
   return (
-    <div className="flex flex-col mx-4 font-mono">
-      <label className="text-sm font-medium mb-2">
+    <div className="flex flex-col mx-4 font-mono ">
+      
+      <label htmlFor="prefix" className="text-sm font-medium mb-2">
         คำนำหน้าชื่อ<span className="text-red-500">*</span>
       </label>
-      <div id ="tabcontainer">
-      <Tabs value={tab} onValueChange={settab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 rounded-md border border-blood bg-white py-0.5">
-          <TabsTrigger
-            id = "นาย"
-            value="นาย"
-            className="text-black text-sm text-center font-normal font-notosansthai basis-1/3 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
-            onClick={()=>{settab('นาย')}}
-          >
-            นาย
-          </TabsTrigger>
-          <TabsTrigger
-            id = "นาง"
-            value="นาง"
-            className="text-black text-sm text-center font-normal font-notosansthai basis-1/3 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
-            onClick={()=>{settab('นาง')}}
-          >
-            นาง
-          </TabsTrigger>
-          <TabsTrigger
-            id = "นางสาว"
-            value="นางสาว"
-            className="text-black text-sm text-center font-normal font-notosansthai basis-1/3 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
-            onClick={()=>{settab('นางสาว')}}
-          >
-            นางสาว
-          </TabsTrigger>
-        </TabsList>
-      </Tabs>
+      <input type="hidden" id="prefix" name="prefix" value={tab} required />
+      <div id="tabcontainer">
+        <Tabs
+          value={tab}
+          onValueChange={settab}
+          className="w-full"
+          aria-labelledby="title-prefix-label">
+          <TabsList className="grid w-full grid-cols-3 rounded-md border border-blood bg-white py-0.5">
+            <TabsTrigger
+              id="นาย"
+              value="นาย"
+              className="text-black text-sm text-center font-normal font-notosansthai basis-1/3 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
+              onClick={() => {
+                settab('นาย');
+              }}>
+              นาย
+            </TabsTrigger>
+            <TabsTrigger
+              id="นาง"
+              value="นาง"
+              className="text-black text-sm text-center font-normal font-notosansthai basis-1/3 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
+              onClick={() => {
+                settab('นาง');
+              }}>
+              นาง
+            </TabsTrigger>
+            <TabsTrigger
+              id="นางสาว"
+              value="นางสาว"
+              className="text-black text-sm text-center font-normal font-notosansthai basis-1/3 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
+              onClick={() => {
+                settab('นางสาว');
+              }}>
+              นางสาว
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
       </div>
-      
-      
-      
 
       <form onSubmit={handlesubmit}>
         <Input
@@ -89,7 +98,7 @@ const UserdataComponent = () => {
           required
           maxLength={13}
         />
-        <DatePicker />
+        <DatePicker onDateChange={setIdExpiredDate}/>
         <Input
           name="back_id"
           type="text"
@@ -102,10 +111,10 @@ const UserdataComponent = () => {
           className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4">
           ต่อไป
         </Button>
-        
       </form>
       
     </div>
+    
   );
 };
 
