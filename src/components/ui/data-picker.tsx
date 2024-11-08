@@ -70,7 +70,7 @@ export function DatePicker({
           {Default ? (
             <p className="p-detail">{format(date, 'PPP', { locale: th })}</p>
           ) : (
-            <p className="p-detail text-sakura">วันหมดอายุบัตร</p>
+            <p className="p-detail text-sakura">วันหมดอายุบัตร*</p>
           )}
         </Button>
       </PopoverTrigger>
@@ -80,7 +80,7 @@ export function DatePicker({
             <SelectTrigger className="w-[120px] p-detail ">
               <SelectValue placeholder="Month" />
             </SelectTrigger>
-            <SelectContent >
+            <SelectContent>
               {months.map((month) => (
                 <SelectItem className="p-detail" key={month} value={month}>
                   {month}

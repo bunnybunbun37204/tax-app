@@ -30,13 +30,20 @@ const UserdataComponent = () => {
       return;
     }
     const formData = new FormData(e.currentTarget);
+
     const fname = formData.get('name');
     const lname = formData.get('lastname');
     const personal_id = formData.get('id');
     const id_expired_date = idExpiredDate;
     const back_id = formData.get('back_id');
     const prefix = tab;
-    console.log([fname,lname,personal_id,id_expired_date,back_id,prefix])
+    localStorage.setItem('fname',JSON.stringify(fname))
+    localStorage.setItem('lname',JSON.stringify(lname))
+    localStorage.setItem('personal_id',JSON.stringify(personal_id))
+    localStorage.setItem('id_expired_date',JSON.stringify(id_expired_date))
+    localStorage.setItem('back_id',JSON.stringify(back_id))
+    localStorage.setItem('prefix',JSON.stringify(prefix))
+    console.log(localStorage)
   };
 
   return (
@@ -87,22 +94,24 @@ const UserdataComponent = () => {
         <Input
           name="name"
           type="text"
+          pattern="[A-Za-zก-ฮ]+"
           className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2"
-          placeholder="ชื่อจริง"
+          placeholder="ชื่อจริง*"
           required
         />
         <Input
           name="lastname"
           type="text"
+          pattern="[A-Za-zก-ฮ]+"
           className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
-          placeholder="นามสกุล"
+          placeholder="นามสกุล*"
           required
         />
         <Input
           name="id"
           type="number"
           className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 mb-2"
-          placeholder="หมายเลขบัตรประชาชน"
+          placeholder="หมายเลขบัตรประชาชน*"
           required
           onInput={(e) => {
             const input = e.target as HTMLInputElement;
@@ -115,7 +124,7 @@ const UserdataComponent = () => {
           name="back_id"
           type="text"
           className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
-          placeholder="หมายเลขหลังบัตรประชาชน"
+          placeholder="หมายเลขหลังบัตรประชาชน*"
           required
         />
         <Button
