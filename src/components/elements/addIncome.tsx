@@ -1,27 +1,19 @@
-import { Wallet } from "lucide-react";
-import { Coins } from "lucide-react";
-import { ChartLine } from "lucide-react";
-import { Building2 } from "lucide-react";
-import { Shirt } from "lucide-react";
-import { Folders } from "lucide-react";
-import { SquareDashed } from "lucide-react";
-import { Paperclip } from "lucide-react";
+import {
+  Wallet,
+  Coins,
+  ChartLine,
+  Building2,
+  Shirt,
+  Folders,
+  SquareDashed,
+  Paperclip,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import { AlertSure } from "./alertSure";
 import { useState } from "react";
 
 export const AddIncomeForm = () => {
@@ -88,12 +80,20 @@ export const AddIncomeForm = () => {
       Calculated: calculated,
     };
 
-    localStorage.setItem(
-      "salaryAfterTax",
-      `salaryAfterTax = ${sumSalary - calculated}`
-    );
+    const inputDataFile = {
+      SalaryFile: files.salaryFile?.name,
+      RoyaltyFile: files.royaltyFile?.name,
+      InvestmentFile: files.investmentFile?.name,
+      RentFile: files.rentFile?.name,
+      FreelanceFile: files.freelanceFile?.name,
+      ContractFile: files.contractFile?.name,
+      OtherFile: files.otherFile?.name,
+    };
+
+    localStorage.setItem("salaryAfterTax", `${sumSalary - calculated}`);
 
     console.log(JSON.stringify(inputData, null, 2));
+    console.log(JSON.stringify(inputDataFile, null, 2));
     console.log(localStorage.getItem("salaryAfterTax"));
   };
   const handleFileChange = (
@@ -105,19 +105,6 @@ export const AddIncomeForm = () => {
       ...prevFiles,
       [fileName]: file,
     }));
-  };
-
-  const handleSubmittedFile = () => {
-    const inputData = {
-      SalaryFile: files.salaryFile?.name,
-      RoyaltyFile: files.royaltyFile?.name,
-      InvestmentFile: files.investmentFile?.name,
-      RentFile: files.rentFile?.name,
-      FreelanceFile: files.freelanceFile?.name,
-      ContractFile: files.contractFile?.name,
-      OtherFile: files.otherFile?.name,
-    };
-    console.log(JSON.stringify(inputData, null, 2));
   };
 
   return (
@@ -224,6 +211,15 @@ export const AddIncomeForm = () => {
             <CardFooter className="w-full p-0">
               <Button
                 onClick={() => setOpenAlert(true)}
+                disabled={
+                  salary === "" &&
+                  royalty === "" &&
+                  investment === "" &&
+                  rent === "" &&
+                  freelance === "" &&
+                  contract === "" &&
+                  other === ""
+                }
                 className="text-white h-10 text-sm font-medium font-notosansthai bg-blood rounded-md justify-center items-center inline-flex w-full hover:cursor-pointer hover:bg-sakura"
               >
                 ยืนยันข้อมูล
@@ -363,6 +359,15 @@ export const AddIncomeForm = () => {
             <CardFooter className="w-full p-0">
               <Button
                 onClick={() => setOpenAlert(true)}
+                disabled={
+                  files.salaryFile === null &&
+                  files.royaltyFile === null &&
+                  files.investmentFile === null &&
+                  files.rentFile === null &&
+                  files.freelanceFile === null &&
+                  files.contractFile === null &&
+                  files.otherFile === null
+                }
                 className="text-white h-10 text-sm font-medium font-notosansthai bg-blood rounded-md justify-center items-center inline-flex w-full hover:cursor-pointer hover:bg-sakura"
               >
                 ยืนยันข้อมูล
@@ -371,29 +376,7 @@ export const AddIncomeForm = () => {
           </Card>
         </TabsContent>
       </Tabs>
-
-      <AlertDialog open={openAlert} onOpenChange={setOpenAlert}>
-        <AlertDialogContent className="max-w-[360px] p-2 border-blood gap-1">
-          <AlertDialogTitle className="text-blood text-xl font-notosansthai px-2 pt-2">
-          ยืนยันข้อมูล ?
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-sandy text-sm font-notosansthai px-4 mb-2">
-            กรุณาตรวจสอบข้อมูลก่อนกดยืนยัน
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogCancel className="w-20 text-blood hover:bg-sakura hover:text-blood">Cancel</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={() => {
-                handleSubmitted();
-                handleSubmittedFile();
-              }}
-              className="bg-blood w-20 border-transparent hover:bg-sakura"
-            >
-              Continue
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      {AlertSure(openAlert, setOpenAlert, handleSubmitted)}
     </div>
   );
 };
