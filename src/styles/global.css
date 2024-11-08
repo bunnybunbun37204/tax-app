@@ -27,25 +27,13 @@
   p {
     @apply font-notosansthai text-[16px] leading-[28px] font-normal;
   }
-  p-detail {
+  .p-detail {
     @apply font-notosansthai text-[14px] leading-[24px] font-normal;
   }
-  p-small {
+  .p-small {
     @apply font-notosansthai text-[14px] leading-[20px] font-normal;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  p,
-  p-detail,
-  p-small {
-    display: block;
-  }
   body {
-    background-image: url("/public/assets/pinkybg.webp");
-    background-size: cover;
-    background-position: center;
     max-width: 440px;
     height: 100lvh;
     overflow: hidden;
@@ -54,7 +42,14 @@
     align-items: center;
     margin: 0 auto;
   }
-  body[data-scroll-locked] {
+  body[data-scroll-locked]{
     min-width: 100%;
   }
+  .background {
+    background-image: url("/assets/pinkybg.webp");
+    background-size: cover;
+    background-position: center;
+
+  
+}
 }
