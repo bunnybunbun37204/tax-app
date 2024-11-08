@@ -13,10 +13,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 interface DatePickerProps {
   startYear?: number;
   endYear?: number;
+  onDateSelect?: (date: Date | null) => void;
 }
 export function DatePicker({
   startYear = getYear(new Date()) - 100,
   endYear = getYear(new Date()),
+  onDateSelect,
 }: DatePickerProps) {
   const [date, setDate] = React.useState<Date>(new Date());
 
@@ -51,6 +53,7 @@ export function DatePicker({
     if (selectedData) {
       setDate(selectedData);
       setDefault(true);
+      onDateSelect?.(selectedData);
     }
   };
 

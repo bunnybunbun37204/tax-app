@@ -8,10 +8,12 @@ import { CalendarIcon } from 'lucide-react';
 interface DatePickerProps {
   startYear?: number;
   endYear?: number;
+  onYearSelect?: (year: number | null) => void;
 }
 export function YearPicker({
   startYear = getYear(new Date()) - 100,
   endYear = getYear(new Date()),
+  onYearSelect,
 }: DatePickerProps) {
   const [date, setDate] = React.useState<Date | null>(null);
   const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
@@ -19,6 +21,9 @@ export function YearPicker({
   const handleYearChange = (year: string) => {
     const newDate = setYear(new Date(), Number.parseInt(year));
     setDate(newDate);
+    if (onYearSelect) {
+      onYearSelect(getYear(newDate)); // Call the callback with selected year
+    }
   };
 
   return (
