@@ -38,6 +38,7 @@ const Login: React.FC = () => {
               onChange={(e) => setUsernameOrEmail(e.target.value)}
               className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] 
             focus:outline-none focus:border-pink-400"
+              required
             />
           </div>
           <div>
@@ -47,6 +48,7 @@ const Login: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] focus:outline-none focus:border-pink-400"
+              required
             />
           </div>
           <div>
