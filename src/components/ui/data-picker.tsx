@@ -76,11 +76,11 @@ export function DatePicker({
       </PopoverTrigger>
       <PopoverContent className="w-fit border-sakura">
         <div className="flex justify-between p-2">
-          <Select onValueChange={handleMonthChange} value={months[getMonth(date)]}>
+          <Select onValueChange={handleMonthChange} value={months[getMonth(date)]} required>
             <SelectTrigger className="w-[120px] p-detail ">
               <SelectValue placeholder="Month" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent >
               {months.map((month) => (
                 <SelectItem className="p-detail" key={month} value={month}>
                   {month}
@@ -88,7 +88,7 @@ export function DatePicker({
               ))}
             </SelectContent>
           </Select>
-          <Select onValueChange={handleYearChange} value={getYear(date).toString()}>
+          <Select onValueChange={handleYearChange} value={getYear(date).toString()} required>
             <SelectTrigger className="w-[120px] p-detail">
               <SelectValue placeholder="Year" />
             </SelectTrigger>
@@ -117,6 +117,7 @@ export function DatePicker({
           initialFocus
           month={date}
           onMonthChange={setDate}
+          required
         />
       </PopoverContent>
     </Popover>

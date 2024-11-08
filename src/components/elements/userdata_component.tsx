@@ -17,10 +17,18 @@ import {
 const UserdataComponent = () => {
   const [tab, settab] = useState('นาง');
   const [idExpiredDate, setIdExpiredDate] = useState<Date | null>(null);
+  const [dateError, setDateError] = useState(false);
 
+  const handleDateChange = (date: Date | null) => {
+    setIdExpiredDate(date);
+    setDateError(false); // Clear the error when a date is selected
+  };
   const handlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    if (!idExpiredDate) {
+      setDateError(true); // Show error if date is not selected
+      return;
+    }
     const formData = new FormData(e.currentTarget);
     const fname = formData.get('name');
     const lname = formData.get('lastname');
@@ -28,6 +36,7 @@ const UserdataComponent = () => {
     const id_expired_date = idExpiredDate;
     const back_id = formData.get('back_id');
     const prefix = tab;
+    console.log([fname,lname,personal_id,id_expired_date,back_id,prefix])
   };
 
   return (
@@ -95,9 +104,13 @@ const UserdataComponent = () => {
           className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 mb-2"
           placeholder="หมายเลขบัตรประชาชน"
           required
-          maxLength={13}
+          onInput={(e) => {
+            const input = e.target as HTMLInputElement;
+            if (input.value.length > 13) input.value = input.value.slice(0, 13);
+          }}
         />
         <DatePicker onDateChange={setIdExpiredDate} />
+        {dateError && <p className="text-red-500 text-sm">Please select a date</p>}
         <Input
           name="back_id"
           type="text"
