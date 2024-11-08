@@ -32,7 +32,7 @@ const UserdataComponent = () => {
 
   return (
     <div className="flex flex-col mx-4 font-mono ">
-      <label htmlFor="prefix" className="text-sm font-medium mb-2">
+      <label htmlFor="prefix" className="text-sm font-medium mb-2 font-notosansthai">
         คำนำหน้าชื่อ<span className="text-red-500">*</span>
       </label>
       <input type="hidden" id="prefix" name="prefix" value={tab} required />
@@ -78,21 +78,21 @@ const UserdataComponent = () => {
         <Input
           name="name"
           type="text"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9]  focus:border-pink-400 mt-2"
+          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2"
           placeholder="ชื่อจริง"
           required
         />
         <Input
           name="lastname"
           type="text"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9]  focus:border-pink-400 mt-2"
+          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
           placeholder="นามสกุล"
           required
         />
         <Input
           name="id"
           type="number"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9]  focus:border-pink-400 mt-2 mb-2"
+          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 mb-2"
           placeholder="หมายเลขบัตรประชาชน"
           required
           maxLength={13}
@@ -101,13 +101,13 @@ const UserdataComponent = () => {
         <Input
           name="back_id"
           type="text"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9]   focus:border-pink-400 mt-2"
+          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
           placeholder="หมายเลขหลังบัตรประชาชน"
           required
         />
         <Button
           type="submit"
-          className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4">
+          className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4 font-notosansthai">
           ต่อไป
         </Button>
       </form>

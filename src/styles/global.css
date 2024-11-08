@@ -42,14 +42,12 @@
     align-items: center;
     margin: 0 auto;
   }
-  body[data-scroll-locked]{
+  body[data-scroll-locked] {
     min-width: 100%;
   }
   .background {
     background-image: url("/assets/pinkybg.webp");
     background-size: cover;
     background-position: center;
-
-  
-}
+  }
 }
