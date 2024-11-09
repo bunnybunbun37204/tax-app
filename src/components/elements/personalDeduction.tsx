@@ -4,17 +4,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DatePicker } from '@/components/ui/date-picker';
 import { YearPicker } from '../ui/year-picker';
 import { useEffect, useState } from 'react';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { getDate } from 'date-fns';
 
+import { getDate } from 'date-fns';
+import { AlertSure } from './alertSure';
+const handleSubmitted = () => {
+  window.location.href = '/home';
+};
 export const PersonalDeductions = () => {
   const [openAlert, setOpenAlert] = useState(false);
   const [genderSelected, setGenderSelected] = useState(false);
@@ -237,26 +232,7 @@ export const PersonalDeductions = () => {
         <p className="p-small">ยืนยันข้อมูล</p>
       </Button>
 
-      <AlertDialog open={openAlert} onOpenChange={setOpenAlert}>
-        <AlertDialogContent className="max-w-[360px] p-2 border-blood gap-1">
-          <AlertDialogTitle className="text-blood text-lg font-notosansthai px-2 pt-2">
-            ยืนยันข้อมูล ?
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-sandy text-sm font-notosansthai px-2 mb-2">
-            กรุณาตรวจสอบข้อมูลก่อนกดยืนยัน
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogCancel className="w-20 text-blood hover:bg-sakura hover:bg-opacity-20 border-blood hover:text-blood text-sm font-notosansthai">
-              ย้อนกลับ
-            </AlertDialogCancel>
-            <a href="/home">
-              <AlertDialogAction className="bg-blood w-20 border-transparent hover:bg-sakura text-sm font-notosansthai">
-                ยืนยัน
-              </AlertDialogAction>
-            </a>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      {AlertSure(openAlert, setOpenAlert, handleSubmitted)}
     </div>
   );
 };
