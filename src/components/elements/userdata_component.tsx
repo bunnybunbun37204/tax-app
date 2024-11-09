@@ -25,9 +25,9 @@ const UserdataComponent = () => {
     setIdExpiredDate(date);
     setDateError(false); // Clear the error when a date is selected
   };
-  
+
   const handlesubmit = (e?: React.FormEvent<HTMLFormElement>) => {
-    setOpenAlert(true)
+    setOpenAlert(true);
     e?.preventDefault(); // Only call preventDefault if `e` is provided
     if (!idExpiredDate) {
       setDateError(true); // Show error if date is not selected
@@ -94,71 +94,83 @@ const UserdataComponent = () => {
         </Tabs>
       </div>
 
-      <form onSubmit={handlesubmit} >
-      <div className="relative">
-        <Input
-          name="name"
-          type="text"
-          pattern="^[A-Za-zก-ฮะ-๏ๆ฿\u0E30-\u0E4C]+$"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 placeholder-transparent peer"
-          placeholder=""
-          required
-          
-        />
-          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden">ชื่อจริง <span className="text-red-500">*</span></span>
-      </div>
-      <div className="relative">
-        <Input
-          name="lastname"
-          type="text"
-          pattern="^[A-Za-zก-ฮะ-๏ๆ฿\u0E30-\u0E4C]+$"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2 placeholder-transparent peer"
-          placeholder=""
-          required
-        />
-        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden ">นามสกุล <span className="text-red-500">*</span></span>
-      </div>
-      <div className="relative">
-        <Input
-          name="id"
-          type="number"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 mb-2 placeholder-transparent peer"
-          placeholder=""
-          required
-          onInput={(e) => {
-            const input = e.target as HTMLInputElement;
-            if (input.value.length > 13) input.value = input.value.slice(0, 13);
-          }}
-        />
-        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden ">หมายเลขบัตรประชาชน <span className="text-red-500">*</span></span>
-      </div>
+      <form onSubmit={handlesubmit}>
+        <div className="relative">
+          <Input
+            name="name"
+            type="text"
+            pattern="^[A-Za-zก-ฮะ-๏ๆ฿\u0E30-\u0E4C]+$"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 placeholder-transparent peer"
+            placeholder=""
+            required
+            onInput={(e) => {
+              const input = e.target as HTMLInputElement;
+              input.value = input.value.replace(/[^A-Za-zก-ฮะ-๏ๆ฿\u0E30-\u0E4C]/g, '');
+            }}
+          />
+          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden">
+            ชื่อจริง <span className="text-red-500">*</span>
+          </span>
+        </div>
+        <div className="relative">
+          <Input
+            name="lastname"
+            type="text"
+            pattern="^[A-Za-zก-ฮะ-๏ๆ฿\u0E30-\u0E4C]+$"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2 placeholder-transparent peer"
+            placeholder=""
+            required
+            onInput={(e) => {
+              const input = e.target as HTMLInputElement;
+              input.value = input.value.replace(/[^A-Za-zก-ฮะ-๏ๆ฿\u0E30-\u0E4C]/g, '');
+            }}
+          />
+          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden ">
+            นามสกุล <span className="text-red-500">*</span>
+          </span>
+        </div>
+        <div className="relative">
+          <Input
+            name="id"
+            type="number"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 mb-2 placeholder-transparent peer"
+            placeholder=""
+            required
+            onInput={(e) => {
+              const input = e.target as HTMLInputElement;
+              if (input.value.length > 13) input.value = input.value.slice(0, 13);
+            }}
+          />
+          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden ">
+            หมายเลขบัตรประชาชน <span className="text-red-500">*</span>
+          </span>
+        </div>
         <DatePicker onDateChange={setIdExpiredDate} />
         {dateError && <p className="text-red-500 text-sm">Please select a date</p>}
-      <div className="relative">
-        <Input
-          name="back_id"
-          type="text"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2 placeholder-transparent peer"
-          placeholder=""
-          required
-          onInput={(e) => {
-            const input = e.target as HTMLInputElement;
-            if (input.value.length > 12) input.value = input.value.slice(0, 12);
-          }}
-        />
-        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden ">หมายเลขหลังบัตรประชาชน<span className="text-red-500">*</span></span>
-      </div>
+        <div className="relative">
+          <Input
+            name="back_id"
+            type="text"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2 placeholder-transparent peer"
+            placeholder=""
+            required
+            onInput={(e) => {
+              const input = e.target as HTMLInputElement;
+              if (input.value.length > 12) input.value = input.value.slice(0, 12);
+            }}
+          />
+          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden ">
+            หมายเลขหลังบัตรประชาชน<span className="text-red-500">*</span>
+          </span>
+        </div>
         <Button
           type="submit"
-          className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4 font-notosansthai"
-          
-          >
+          className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4 font-notosansthai">
           ต่อไป
         </Button>
       </form>
       {AlertSure(openAlert, setOpenAlert, handlesubmit)}
     </div>
-
   );
 };
 
