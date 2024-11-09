@@ -17,7 +17,7 @@ import { ref, watch, nextTick } from 'vue';
 
 const navigateUserData = () => {
   window.location.href = '/userdata';
-}
+};
 
 const message = ref('คลิกเพื่อเริ่มการคำนวณภาษี');
 const animatedTax = ref(0);
