@@ -1,4 +1,5 @@
 import type React from 'react';
+import { AlertSure } from './alertSure';
 import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -18,18 +19,21 @@ const UserdataComponent = () => {
   const [tab, settab] = useState('นาง');
   const [idExpiredDate, setIdExpiredDate] = useState<Date | null>(null);
   const [dateError, setDateError] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
 
   const handleDateChange = (date: Date | null) => {
     setIdExpiredDate(date);
     setDateError(false); // Clear the error when a date is selected
   };
-  const handlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  
+  const handlesubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+    setOpenAlert(true)
+    e?.preventDefault(); // Only call preventDefault if `e` is provided
     if (!idExpiredDate) {
       setDateError(true); // Show error if date is not selected
       return;
     }
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e?.currentTarget || document.createElement('form'));
 
     const fname = formData.get('name');
     const lname = formData.get('lastname');
@@ -37,13 +41,13 @@ const UserdataComponent = () => {
     const id_expired_date = idExpiredDate;
     const back_id = formData.get('back_id');
     const prefix = tab;
-    localStorage.setItem('fname',JSON.stringify(fname))
-    localStorage.setItem('lname',JSON.stringify(lname))
-    localStorage.setItem('personal_id',JSON.stringify(personal_id))
-    localStorage.setItem('id_expired_date',JSON.stringify(id_expired_date))
-    localStorage.setItem('back_id',JSON.stringify(back_id))
-    localStorage.setItem('prefix',JSON.stringify(prefix))
-    console.log(localStorage)
+    localStorage.setItem('fname', JSON.stringify(fname));
+    localStorage.setItem('lname', JSON.stringify(lname));
+    localStorage.setItem('personal_id', JSON.stringify(personal_id));
+    localStorage.setItem('id_expired_date', JSON.stringify(id_expired_date));
+    localStorage.setItem('back_id', JSON.stringify(back_id));
+    localStorage.setItem('prefix', JSON.stringify(prefix));
+    console.log(localStorage);
   };
 
   return (
@@ -90,50 +94,75 @@ const UserdataComponent = () => {
         </Tabs>
       </div>
 
-      <form onSubmit={handlesubmit}>
-        <Input
-          name="name"
-          type="text"
-          pattern="[A-Za-zก-ฮ]+"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2"
-          placeholder="ชื่อจริง*"
-          required
-        />
-        <Input
-          name="lastname"
-          type="text"
-          pattern="[A-Za-zก-ฮ]+"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
-          placeholder="นามสกุล*"
-          required
-        />
-        <Input
-          name="id"
-          type="number"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 mb-2"
-          placeholder="หมายเลขบัตรประชาชน*"
-          required
-          onInput={(e) => {
-            const input = e.target as HTMLInputElement;
-            if (input.value.length > 13) input.value = input.value.slice(0, 13);
-          }}
-        />
-        <DatePicker onDateChange={setIdExpiredDate} />
-        {dateError && <p className="text-red-500 text-sm">Please select a date</p>}
-        <Input
-          name="back_id"
-          type="text"
-          className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
-          placeholder="หมายเลขหลังบัตรประชาชน*"
-          required
-        />
+      <form onSubmit={handlesubmit} >
+        <div className="relative mt-2">
+          <Input
+            name="name"
+            type="text"
+            pattern="[A-Za-zก-ฮ]+"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400"
+            placeholder="ชื่อจริง"
+            required
+          />
+          <span className="absolute left-14 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+        </div>
+        <div className="relative mt-2">
+         <Input
+            name="lastname"
+            type="text"
+            pattern="[A-Za-zก-ฮ]+"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
+            placeholder="นามสกุล"
+            required
+          />
+          <span className="absolute left-16 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+        </div>
+        <div className="relative mt-2">
+          <Input
+            name="id"
+            type="number"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 mb-2"
+            placeholder="หมายเลขบัตรประชาชน"
+            required
+            onInput={(e) => {
+              const input = e.target as HTMLInputElement;
+              if (input.value.length > 13) input.value = input.value.slice(0, 13);
+            }}
+            />
+          <span className="absolute left-36 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+        </div>
+
+        
+          <DatePicker onDateChange={setIdExpiredDate} />
+          
+        
+          {dateError && <p className="text-red-500 text-sm">Please select a date</p>}
+          <div className="relative mt-2">
+            <Input
+              name="back_id"
+              type="text"
+              className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai   focus:border-pink-400 mt-2"
+              placeholder="หมายเลขหลังบัตรประชาชน"
+              required
+              onInput={(e) => {
+                const input = e.target as HTMLInputElement;
+                if (input.value.length > 12) input.value = input.value.slice(0, 12);
+              }}
+            />
+            <span className="absolute left-44 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+          </div>
+          
         <Button
           type="submit"
-          className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4 font-notosansthai">
+          className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4 font-notosansthai"
+          
+          >
           ต่อไป
         </Button>
       </form>
+      {AlertSure(openAlert, setOpenAlert, handlesubmit)}
     </div>
+
   );
 };
 

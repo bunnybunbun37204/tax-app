@@ -34,7 +34,7 @@
     @apply font-notosansthai text-[14px] leading-[20px] font-normal;
   }
   body {
-    max-width: 440px;
+    min-width: max-content;
     height: 100lvh;
     overflow: hidden;
     display: flex;
