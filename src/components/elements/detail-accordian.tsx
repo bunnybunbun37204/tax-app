@@ -3,8 +3,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Landmark } from "lucide-react"; // Import Lucide icons
+} from '@/components/ui/accordion';
+import { Landmark } from 'lucide-react'; // Import Lucide icons
 
 export function DetailHome() {
   return (
@@ -16,9 +16,11 @@ export function DetailHome() {
         <AccordionContent className="p-4 bg-white flex justify-between items-center">
           <div className="flex items-center gap-2 text-gray-500">
             <Landmark className="w-5 h-5 text-black" /> {/* Icon size adjusted */}
-            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span> {/* Font size adjusted */}
+            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>{' '}
+            {/* Font size adjusted */}
           </div>
-          <span className="font-normal font-notosansthai text-gray-900 text-base">20,300,325฿</span> {/* Font size adjusted */}
+          <span className="font-normal font-notosansthai text-gray-900 text-base">20,300,325฿</span>{' '}
+          {/* Font size adjusted */}
         </AccordionContent>
       </AccordionItem>
 
@@ -29,9 +31,11 @@ export function DetailHome() {
         <AccordionContent className="p-4 bg-white flex justify-between items-center">
           <div className="flex items-center gap-2 text-gray-500">
             <Landmark className="w-5 h-5 text-black" /> {/* Icon size adjusted */}
-            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span> {/* Font size adjusted */}
+            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>{' '}
+            {/* Font size adjusted */}
           </div>
-          <span className="font-normal font-notosansthai text-gray-900 text-base">100฿</span> {/* Font size adjusted */}
+          <span className="font-normal font-notosansthai text-gray-900 text-base">100฿</span>{' '}
+          {/* Font size adjusted */}
         </AccordionContent>
       </AccordionItem>
     </Accordion>
