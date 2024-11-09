@@ -69,6 +69,8 @@ export const AddIncomeForm = () => {
             parseOrZero(contract) * 0.6 +
             parseOrZero(other) * 0.6;
 
+    window.location.href = '/homes';
+
     const inputData = {
       Salary: salary,
       Royalty: royalty,
@@ -125,7 +127,7 @@ export const AddIncomeForm = () => {
             value="upload"
             className="text-black text-sm text-center font-normal font-notosansthai basis-1/2 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
             onClick={() => onTabChange('upload')}>
-            อัพโหลดไฟล์รายได้
+            อัพโหลดเอกสารรายได้
           </TabsTrigger>
         </TabsList>
         {/* input content */}

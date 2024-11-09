@@ -38,7 +38,7 @@ export const PersonalDeductions = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('Deduction', String(totalDeductions));
+    localStorage.setItem('personalDeduction', String(totalDeductions));
   }, [totalDeductions]);
   return (
     <div className="flex flex-col gap-3">
