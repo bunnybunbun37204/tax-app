@@ -184,7 +184,7 @@ const UserdataComponent = () => {
           </span>
         </div>
         <Select onValueChange={(value) => setselectjob(value)}>
-          <SelectTrigger className="w-full px-4 py-2 border border-[#c34e5e] rounded-md text-sakura placeholder:text-[#e4b0b9] font-[Noto Sans Thai] focus:border-pink-400 mt-2">
+          <SelectTrigger className="w-full px-4 py-2 border border-[#c34e5e] rounded-md text-black placeholder:text-[#e4b0b9] font-[Noto Sans Thai] focus:border-pink-400 mt-2">
             <div className="flex items-center">
               {selectjob ? (
                 <SelectValue /> // Displays the selected job when chosen
