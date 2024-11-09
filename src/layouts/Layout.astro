@@ -23,6 +23,7 @@ const { title } = Astro.props;
     <div class="background flex flex-col h-full max-w-md mx-auto w-full justify-between">
       <div class="flex flex-col gap-[18px] px-[25px]">
       <Header/>
+      <slot/>
       </div>
       <Nav client:load/>
     </div>
