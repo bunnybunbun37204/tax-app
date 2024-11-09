@@ -6,7 +6,7 @@ import Layout from '@/layouts/Layout.astro';
 
 <Layout title="Home">
     <div class="min-w-full mt-18 flex flex-col justify-center gap-4 items-center">
-        <TaxSummary client:only/>
-        <DetailHome client:load/>
+        <TaxSummary client:only="vue"/>
+        <DetailHome client:only="react"/>
     </div>
 </Layout>

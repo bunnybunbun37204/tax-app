@@ -25,9 +25,9 @@ const UserdataComponent = () => {
     setIdExpiredDate(date);
     setDateError(false); // Clear the error when a date is selected
   };
-  const handlesubmitredirect = ()=>{
+  const handlesubmitredirect = () => {
     window.location.href = '/personal-deduction';
-  }
+  };
   const handlesubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     setOpenAlert(true);
     e?.preventDefault(); // Only call preventDefault if `e` is provided
@@ -50,7 +50,6 @@ const UserdataComponent = () => {
     localStorage.setItem('back_id', JSON.stringify(back_id));
     localStorage.setItem('prefix', JSON.stringify(prefix));
     console.log(localStorage);
-    
   };
 
   return (

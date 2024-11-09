@@ -7,6 +7,8 @@ import {
 import { Landmark } from 'lucide-react'; // Import Lucide icons
 
 export function DetailHome() {
+  const totalIncome = localStorage.getItem('salary') ?? '0';
+  const totalDeduction = localStorage.getItem('TotalDeduction') ?? '0';
   return (
     <Accordion type="single" collapsible className="w-full space-y-4">
       <AccordionItem value="income" className="shadow-md rounded-xl">
@@ -19,7 +21,9 @@ export function DetailHome() {
             <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>{' '}
             {/* Font size adjusted */}
           </div>
-          <span className="font-normal font-notosansthai text-gray-900 text-base">20,300,325฿</span>{' '}
+          <span className="font-normal font-notosansthai text-gray-900 text-base">
+            {totalIncome}฿
+          </span>{' '}
           {/* Font size adjusted */}
         </AccordionContent>
       </AccordionItem>
@@ -34,7 +38,9 @@ export function DetailHome() {
             <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>{' '}
             {/* Font size adjusted */}
           </div>
-          <span className="font-normal font-notosansthai text-gray-900 text-base">100฿</span>{' '}
+          <span className="font-normal font-notosansthai text-gray-900 text-base">
+            {totalDeduction}฿
+          </span>{' '}
           {/* Font size adjusted */}
         </AccordionContent>
       </AccordionItem>
