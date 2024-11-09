@@ -20,19 +20,32 @@ const UserdataComponent = () => {
   const [idExpiredDate, setIdExpiredDate] = useState<Date | null>(null);
   const [dateError, setDateError] = useState(false);
   const [openAlert, setOpenAlert] = useState(false);
-
+  const [selectjob, setselectjob] = useState('');
+  const [isJobSelected, setIsJobSelected] = useState(true);
+  const job = [
+    'อาชีพอิสระ',
+    'อาชีพรับจ้าง',
+    'อาชีพข้าราชการ',
+    'อาชีพเกษตรกรรม',
+    'อาชีพงานฝีมือ',
+    'อาชีพอุตสาหกรรม',
+  ];
   const handleDateChange = (date: Date | null) => {
     setIdExpiredDate(date);
     setDateError(false); // Clear the error when a date is selected
   };
-  const handlesubmitredirect = ()=>{
+  const handlesubmitredirect = () => {
     window.location.href = '/personal-deduction';
-  }
+  };
   const handlesubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     setOpenAlert(true);
     e?.preventDefault(); // Only call preventDefault if `e` is provided
     if (!idExpiredDate) {
       setDateError(true); // Show error if date is not selected
+      return;
+    }
+    if (!selectjob) {
+      setIsJobSelected(false); // Show error if nothing is selected
       return;
     }
     const formData = new FormData(e?.currentTarget || document.createElement('form'));
@@ -42,15 +55,19 @@ const UserdataComponent = () => {
     const personal_id = formData.get('id');
     const id_expired_date = idExpiredDate;
     const back_id = formData.get('back_id');
+    const address = formData.get('address');
+    const workplace = formData.get('workplace');
     const prefix = tab;
+    localStorage.setItem('workplace', JSON.stringify(workplace));
+    localStorage.setItem('job', JSON.stringify(selectjob));
     localStorage.setItem('fname', JSON.stringify(fname));
     localStorage.setItem('lname', JSON.stringify(lname));
     localStorage.setItem('personal_id', JSON.stringify(personal_id));
     localStorage.setItem('id_expired_date', JSON.stringify(id_expired_date));
     localStorage.setItem('back_id', JSON.stringify(back_id));
     localStorage.setItem('prefix', JSON.stringify(prefix));
+    localStorage.setItem('address', JSON.stringify(address));
     console.log(localStorage);
-    
   };
 
   return (
@@ -166,6 +183,57 @@ const UserdataComponent = () => {
             หมายเลขหลังบัตรประชาชน<span className="text-red-500">*</span>
           </span>
         </div>
+        <Select onValueChange={(value) => setselectjob(value)}>
+          <SelectTrigger className="w-full px-4 py-2 border border-[#c34e5e] rounded-md text-black placeholder:text-[#e4b0b9] font-[Noto Sans Thai] focus:border-pink-400 mt-2">
+            <div className="flex items-center">
+              {selectjob ? (
+                <SelectValue /> // Displays the selected job when chosen
+              ) : (
+                <span className="text-[#e4b0b9] font-notosansthai text-sm">
+                  เลือกอาชีพ<span className="text-red-500">*</span>
+                </span>
+              )}
+            </div>
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel className="w-full px-4 py-2 border  rounded-md text-blood placeholder:font-notosansthai  focus:border-pink-400">
+                อาชีพ
+              </SelectLabel>
+              {job.map((obj) => (
+                <SelectItem value={obj} key={obj} className="text-blood">
+                  {obj}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        {!isJobSelected && <p className="text-red-500 mt-2">กรุณาเลือกอาชีพ</p>}
+        <div className="relative">
+          <Input
+            name="address"
+            type="text"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 placeholder-transparent peer"
+            placeholder=""
+            required
+          />
+          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden">
+            ที่อยู่ <span className="text-red-500 text-sm">*</span>
+          </span>
+        </div>
+        <div className="relative">
+          <Input
+            name="workplace"
+            type="text"
+            className="w-full px-4 py-2 border border-[#c34e5e] rounded-md placeholder:text-[#e4b0b9] placeholder:font-notosansthai  focus:border-pink-400 mt-2 placeholder-transparent peer"
+            placeholder=""
+            required
+          />
+          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden">
+            ที่ทำงาน <span className="text-red-500">*</span>
+          </span>
+        </div>
+
         <Button
           type="submit"
           className="w-full py-2 text-white bg-[#c34e5e] rounded-md hover:bg-pink-700 focus:outline-none mt-4 font-notosansthai">
