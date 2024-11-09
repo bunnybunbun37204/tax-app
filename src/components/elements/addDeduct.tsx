@@ -36,7 +36,7 @@ const deductTypes = [
 
 export const AddDeductForm = () => {
   const [tab, setTab] = useState('input');
-  
+
   // Initialize deduct and files state
   const initialDeductState = {};
   const initialFilesState = {};
@@ -79,7 +79,7 @@ export const AddDeductForm = () => {
     console.log('Total Deduction:', totalDeduction);
 
     // Save total deduction to localStorage
-    localStorage.setItem('deduction', totalDeduction.toString());
+    localStorage.setItem('TotalDeduction', totalDeduction.toString());
 
     window.location.href = '/homes';
   };
