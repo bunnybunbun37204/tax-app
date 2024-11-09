@@ -6,12 +6,12 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 
 const AlertSure = (
   openAlert: boolean,
   setOpenAlert: (value: boolean) => void,
-  handleSubmitted: () => void
+  handleSubmitted: () => void,
 ) => {
   return (
     <AlertDialog open={openAlert} onOpenChange={setOpenAlert}>
@@ -28,8 +28,7 @@ const AlertSure = (
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleSubmitted}
-            className="bg-blood w-20 border-transparent hover:bg-sakura"
-          >
+            className="bg-blood w-20 border-transparent hover:bg-sakura">
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -38,4 +37,4 @@ const AlertSure = (
   );
 };
 
-export {AlertSure};
+export { AlertSure };

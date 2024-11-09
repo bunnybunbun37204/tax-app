@@ -70,10 +70,10 @@ export function DatePicker({
           {Default ? (
             <p className="p-detail">{format(date, 'PPP', { locale: th })}</p>
           ) : (
-            <div className="relative mt-2">
-              <p className="p-detail text-sakura">วันหมดอายุบัตร</p>
-              <span className="absolute left-24 top-2 transform -translate-y-1/2 text-red-500">*</span>
+            <div className="relative">
+              <span className="absolute top-1/2 transform -translate-y-1/2 text-[#e4b0b9] font-notosansthai text-sm peer-placeholder-shown:block peer-focus:hidden peer-valid:hidden ">วันหมดอายุบัตร<span className="text-red-500">*</span></span>
             </div>
+              
           )}
         </Button>
       </PopoverTrigger>
