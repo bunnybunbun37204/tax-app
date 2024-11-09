@@ -1,10 +1,10 @@
 <template>
   <button
-    class="w-48 font-notosansthai h-48 p-4 bg-white rounded-full border-4 border-red-300 shadow-[0_0_15px_rgba(255,0,0,0.4)] flex items-center justify-center text-center transition-shadow duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,0,0,0.6)]">
+    class="w-72 font-notosansthai h-72 p-4 bg-white rounded-full border-4 border-red-300 shadow-[0_0_15px_rgba(255,0,0,0.4)] flex items-center justify-center text-center transition-shadow duration-300 ease-in-out hover:shadow-[0_0_25px_rgba(255,0,0,0.6)]">
     <div class="text-center">
-      <div class="text-red-500 font-bold text-xl">{{ message }}</div>
-      <div v-if="$totalTax !== null" class="text-red-500 font-bold text-xl">{{ animatedTax }}฿</div>
-      <p v-if="$totalDeduction !== null" class="text-sm text-gray-400">ลดหย่อนแล้ว {{ $totalDeduction }}฿</p>
+      <div class="text-red-500 font-bold text-3xl">{{ message }}</div>
+      <div v-if="$totalTax !== null" class="text-red-500 font-bold text-3xl">{{ animatedTax }}฿</div>
+      <p v-if="$totalDeduction !== null" class="text-sm font-normal mt-3 text-gray-400">ลดหย่อนแล้ว {{ $totalDeduction }}฿</p>
     </div>
   </button>
 </template>
