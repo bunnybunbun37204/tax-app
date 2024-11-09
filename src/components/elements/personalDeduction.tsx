@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { getDate } from 'date-fns';
 import { AlertSure } from './alertSure';
 const handleSubmitted = () => {
-  window.location.href = '/home';
+  window.location.href = '/homes';
 };
 export const PersonalDeductions = () => {
   const [openAlert, setOpenAlert] = useState(false);
