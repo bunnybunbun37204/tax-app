@@ -11,5 +11,6 @@ import vue from '@astrojs/vue';
 export default defineConfig({
   integrations: [react(), tailwind({
     applyBaseStyles: false,
-  }), vue()]
+  }), vue()],
+  output: "static"
 });
