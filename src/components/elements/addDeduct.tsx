@@ -34,7 +34,7 @@ const deductTypes = [
 
 export const AddDeductForm = () => {
   const [tab, setTab] = useState('input');
-  
+
   // Initialize deduct and files state
   const initialDeductState: { [key: string]: string } = {};
   const initialFilesState: { [key: string]: File | null } = {};
@@ -52,7 +52,7 @@ export const AddDeductForm = () => {
 
   const handleSubmitted = () => {
     let totalDeduction = 0;
-    const addIncome = parseOrZero(localStorage.getItem('addIncome') || '0');
+    const addIncome = parseOrZero(localStorage.getItem('salaryAfterTax') || '0');
     console.log('Additional Income:', addIncome);
 
     // Calculate total deduction using for...of loop
