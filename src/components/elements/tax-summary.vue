@@ -10,12 +10,11 @@
       <div class="text-center">
         <div :class="['text-red-500', 'font-bold', sizeText]">
           {{ message }}</div>
-        <!-- Fix the v-if condition -->
         <div v-if="animatedTax >= 0 && totalDeduction" class="text-red-500 font-bold text-3xl relative">
-          {{ animatedTax }}฿
+          {{ animatedTax.toLocaleString() }}฿
         </div>
         <p v-if="totalDeduction !== null" class="text-sm font-normal mt-3 text-gray-400">
-          ลดหย่อนแล้ว {{ totalDeduction }}฿
+          ลดหย่อนแล้ว {{ totalDeduction.toLocaleString() }}฿
         </p>
       </div>
     </button>
@@ -39,23 +38,75 @@ const navigateUserData = () => {
 const message = ref('คลิกเพื่อเริ่มการคำนวณภาษี');
 const animatedTax = ref(0);
 
-const totalIncome = localStorage.getItem('salary') ?? '0';
-const totalDeduction = localStorage.getItem('Deduction');
-const salaryAfterTax = localStorage.getItem('salaryAfterTax') ?? '0';
-const totalTax = ref(
-  Number.parseInt(totalIncome) -
-    Number.parseInt(salaryAfterTax) -
-    Number.parseInt(totalDeduction ?? '0'),
-);
+const salaryAfterTax = Number.parseFloat(localStorage.getItem('salaryAfterTax') ?? '0');
+const totalDeduction =
+  Number.parseFloat(localStorage.getItem('Deduction') ?? '0') +
+  Number.parseFloat(localStorage.getItem('deduction') ?? '0');
+
 const sizeText = ref('text-xl');
+const calculatedTax = ref(0);
 
-if (totalDeduction && totalIncome !== '0' && totalTax.value !== 0) {
-  message.value = 'ภาษีที่ต้องจ่าย';
-  sizeText.value = 'text-3xl';
-}
+const calculateTax = () => {
+  let taxableIncome = Math.max(salaryAfterTax - totalDeduction, 0);
+  let tax = 0;
 
+  if (taxableIncome > 5000000) {
+    tax += (taxableIncome - 5000000) * 0.35;
+    taxableIncome = 5000000;
+  }
+  if (taxableIncome > 2000000) {
+    tax += (taxableIncome - 2000000) * 0.3;
+    taxableIncome = 2000000;
+  }
+  if (taxableIncome > 1000000) {
+    tax += (taxableIncome - 1000000) * 0.25;
+    taxableIncome = 1000000;
+  }
+  if (taxableIncome > 750000) {
+    tax += (taxableIncome - 750000) * 0.2;
+    taxableIncome = 750000;
+  }
+  if (taxableIncome > 500000) {
+    tax += (taxableIncome - 500000) * 0.15;
+    taxableIncome = 500000;
+  }
+  if (taxableIncome > 300000) {
+    tax += (taxableIncome - 300000) * 0.1;
+    taxableIncome = 300000;
+  }
+  if (taxableIncome > 150000) {
+    tax += (taxableIncome - 150000) * 0.05;
+  }
+
+  calculatedTax.value = tax;
+
+  if (calculatedTax.value > 0) {
+    message.value = 'ภาษีที่ต้องจ่าย';
+    sizeText.value = 'text-3xl';
+  }
+};
+
+const startTaxAnimation = () => {
+  const start = animatedTax.value;
+  const duration = 700;
+  const startTime = performance.now();
+
+  const animate = (currentTime: number) => {
+    const elapsedTime = currentTime - startTime;
+    const progress = Math.min(elapsedTime / duration, 1);
+    animatedTax.value = Math.floor(start + (calculatedTax.value - start) * progress);
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+
+  requestAnimationFrame(animate);
+};
+
+// Watch for changes in calculated tax and animate the tax display
 watch(
-  totalTax,
+  calculatedTax,
   (newTax) => {
     if (newTax === null || newTax === undefined) {
       animatedTax.value = 0;
@@ -63,23 +114,12 @@ watch(
     }
 
     nextTick(() => {
-      const start = animatedTax.value;
-      const duration = 700;
-      const startTime = performance.now();
-
-      const animate = (currentTime: number) => {
-        const elapsedTime = currentTime - startTime;
-        const progress = Math.min(elapsedTime / duration, 1);
-        animatedTax.value = Math.floor(start + (newTax - start) * progress);
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
-
-      requestAnimationFrame(animate);
+      startTaxAnimation();
     });
   },
   { immediate: true },
 );
+
+// Trigger the tax calculation on component load
+calculateTax();
 </script>

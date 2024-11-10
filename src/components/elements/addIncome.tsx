@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { AlertSure } from './alertSure';
 import { useState } from 'react';
+import { salaryAfterTax } from '@/stores';
 
 export const AddIncomeForm = () => {
   const [tab, setTab] = useState('input');
@@ -96,6 +97,7 @@ export const AddIncomeForm = () => {
     console.log(JSON.stringify(inputData, null, 2));
     console.log(JSON.stringify(inputDataFile, null, 2));
     console.log(localStorage.getItem('salaryAfterTax'));
+    window.location.href = '/homes';
   };
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -126,7 +128,7 @@ export const AddIncomeForm = () => {
             value="upload"
             className="text-black text-sm text-center font-normal font-notosansthai basis-1/2 h-8 px-3 py-1.5 rounded-[3px] data-[state=active]:bg-sakura"
             onClick={() => onTabChange('upload')}>
-            อัพโหลดไฟล์รายได้
+            อัพโหลดเอกสารรายได้
           </TabsTrigger>
         </TabsList>
         {/* input content */}

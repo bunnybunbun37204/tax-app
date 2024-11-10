@@ -4,11 +4,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Landmark } from 'lucide-react'; // Import Lucide icons
+import { Landmark } from 'lucide-react';
 
 export function DetailHome() {
-  const totalIncome = localStorage.getItem('salary') ?? '0';
-  const totalDeduction = localStorage.getItem('TotalDeduction') ?? '0';
+  const totalIncome = Number.parseFloat(localStorage.getItem('salary') ?? '0').toLocaleString();
+  const totalDeduction = (
+    Number.parseFloat(localStorage.getItem('Deduction') ?? '0') +
+    Number.parseFloat(localStorage.getItem('deduction') ?? '0')
+  ).toLocaleString();
+
   return (
     <Accordion type="single" collapsible className="w-full space-y-4">
       <AccordionItem value="income" className="shadow-md rounded-xl">
@@ -17,14 +21,12 @@ export function DetailHome() {
         </AccordionTrigger>
         <AccordionContent className="p-4 bg-white flex justify-between items-center">
           <div className="flex items-center gap-2 text-gray-500">
-            <Landmark className="w-5 h-5 text-black" /> {/* Icon size adjusted */}
-            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>{' '}
-            {/* Font size adjusted */}
+            <Landmark className="w-5 h-5 text-black" />
+            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>
           </div>
           <span className="font-normal font-notosansthai text-gray-900 text-base">
             {totalIncome}฿
-          </span>{' '}
-          {/* Font size adjusted */}
+          </span>
         </AccordionContent>
       </AccordionItem>
 
@@ -34,14 +36,12 @@ export function DetailHome() {
         </AccordionTrigger>
         <AccordionContent className="p-4 bg-white flex justify-between items-center">
           <div className="flex items-center gap-2 text-gray-500">
-            <Landmark className="w-5 h-5 text-black" /> {/* Icon size adjusted */}
-            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>{' '}
-            {/* Font size adjusted */}
+            <Landmark className="w-5 h-5 text-black" />
+            <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>
           </div>
           <span className="font-normal font-notosansthai text-gray-900 text-base">
             {totalDeduction}฿
-          </span>{' '}
-          {/* Font size adjusted */}
+          </span>
         </AccordionContent>
       </AccordionItem>
     </Accordion>
