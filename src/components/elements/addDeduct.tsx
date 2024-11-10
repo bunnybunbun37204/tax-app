@@ -27,7 +27,7 @@ const deductTypes = [
   { key: 'lifeInsurance', label: 'เบี้ยประกันชีวิต/สุขภาพ', max: 100000, icon: HeartPulse },
   { key: 'socialSecurity', label: 'ประกันสังคม', max: 9000, icon: Shrub },
   { key: 'homeLoanInterest', label: 'ดอกเบี้ยเงินกู้ยืมจากธนาคาร', max: 100000, icon: Landmark },
-  { key: 'donation', label: 'การบริจาค', max: 100000, icon: ShieldCheck },
+  { key: 'donation', label: 'การบริจาค', max: Infinity, icon: ShieldCheck },
 ];
 
 export const AddDeductForm = () => {
