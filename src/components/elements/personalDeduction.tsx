@@ -132,6 +132,12 @@ export const PersonalDeductions = () => {
                 <p className="p-small text-black">หม้าย</p>
               </TabsTrigger>
             </TabsList>
+            <TabsContent value="sigle">
+              <div className="flex gap-1 bg-sakura bg-opacity-15 p-2 px-4 items-center rounded-[6px]">
+                <CircleCheck className="size-[16px] text-emerald-500 fill-emerald-50" />
+                <p className="text-xs">ได้สิทธิยกเว้นเงินได้ 60,000 บาท</p>
+              </div>
+            </TabsContent>
             <TabsContent value="broken">
               <div className="flex flex-col gap-1">
                 <p>
@@ -186,6 +192,7 @@ export const PersonalDeductions = () => {
                                 <p className="p-small text-black">เสียชีวิต</p>
                               </TabsTrigger>
                             </TabsList>
+
                             <TabsContent value="dead">
                               <div className="flex gap-1 bg-sakura bg-opacity-15 p-2 px-4 items-center rounded-[6px]">
                                 <CircleCheck className="size-[16px] text-emerald-500 fill-emerald-50" />
