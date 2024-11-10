@@ -40,7 +40,7 @@ const message = ref('คลิกเพื่อเริ่มการคำ�
 const animatedTax = ref(0);
 
 const totalIncome = localStorage.getItem('salary') ?? '0';
-const totalDeduction = localStorage.getItem('TotalDeduction');
+const totalDeduction = localStorage.getItem('Deduction');
 const salaryAfterTax = localStorage.getItem('salaryAfterTax') ?? '0';
 const totalTax = ref(
   Number.parseInt(totalIncome) -
