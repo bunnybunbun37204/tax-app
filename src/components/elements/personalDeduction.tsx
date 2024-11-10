@@ -109,7 +109,7 @@ export const PersonalDeductions = () => {
                 className="w-full data-[state=active]:bg-sakura"
                 value="sigle"
                 onClick={() => {
-                  setDeduction2(0);
+                  setDeduction2(60000);
                   setStatusSelected(true);
                 }}>
                 <p className="p-small text-black">โสด</p>
