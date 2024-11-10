@@ -89,6 +89,8 @@ export const AddIncomeForm = () => {
     };
 
     localStorage.setItem('salaryAfterCal', `${sumSalary - calculated}`);
+    localStorage.setItem('salaryAfterCal', `${sumSalary}`);
+
 
     console.log(JSON.stringify(inputData, null, 2));
     console.log(JSON.stringify(inputDataFile, null, 2));

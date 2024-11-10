@@ -27,7 +27,7 @@ const deductTypes = [
   { key: 'lifeInsurance', label: 'เบี้ยประกันชีวิต/สุขภาพ', max: 100000, icon: HeartPulse },
   { key: 'socialSecurity', label: 'ประกันสังคม', max: 9000, icon: Shrub },
   { key: 'homeLoanInterest', label: 'ดอกเบี้ยเงินกู้ยืมจากธนาคาร', max: 100000, icon: Landmark },
-  { key: 'donation', label: 'การบริจาค', max: Infinity, icon: ShieldCheck },
+  { key: 'donation', label: 'การบริจาค', max: Number.POSITIVE_INFINITY, icon: ShieldCheck },
 ];
 
 export const AddDeductForm = () => {
@@ -79,7 +79,7 @@ export const AddDeductForm = () => {
     console.log('Uploaded Files:', JSON.stringify(inputDataFile, null, 2));
 
     // Save total deduction to localStorage
-    localStorage.setItem('deduction', totalDeduction.toString());
+    localStorage.setItem('TotalDeduction', totalDeduction.toString());
     console.log('Total Deduction saved to localStorage:', totalDeduction);
     window.location.href = '/homes';
   };

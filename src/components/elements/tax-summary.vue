@@ -41,7 +41,7 @@ const animatedTax = ref(0);
 const salaryAfterTax = Number.parseFloat(localStorage.getItem('salaryAfterCal') ?? '0');
 const totalDeduction =
   Number.parseFloat(localStorage.getItem('Deduction') ?? '0') +
-  Number.parseFloat(localStorage.getItem('deduction') ?? '0');
+  Number.parseFloat(localStorage.getItem('TotalDeduction') ?? '0');
 
 const sizeText = ref('text-xl');
 const calculatedTax = ref(0);

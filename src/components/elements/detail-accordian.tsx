@@ -10,7 +10,7 @@ export function DetailHome() {
   const totalIncome = Number.parseFloat(localStorage.getItem('salary') ?? '0').toLocaleString();
   const totalDeduction = (
     Number.parseFloat(localStorage.getItem('Deduction') ?? '0') +
-    Number.parseFloat(localStorage.getItem('deduction') ?? '0')
+    Number.parseFloat(localStorage.getItem('TotalDeduction') ?? '0')
   ).toLocaleString();
 
   return (
