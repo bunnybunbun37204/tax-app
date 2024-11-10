@@ -20,8 +20,6 @@ import { Label } from '@/components/ui/label';
 import { AlertSure } from './alertSure';
 
 const deductTypes = [
-  { key: 'personal', label: 'ค่าลดหย่อนส่วนตัว', max: 60000, icon: User },
-  { key: 'spouse', label: 'ค่าลดหย่อนคู่สมรส', max: 60000, icon: Users },
   { key: 'children', label: 'ค่าลดหย่อนบุตร', max: 60000, icon: Baby },
   { key: 'parents', label: 'ค่าลดหย่อนบิดามารดา', max: 30000, icon: Ghost },
   { key: 'disabledDependent', label: 'ค่าลดหย่อนผู้พิการหรือทุพพลภาพ', max: 60000, icon: EarOff },
