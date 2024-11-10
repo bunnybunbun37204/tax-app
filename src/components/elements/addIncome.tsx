@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { AlertSure } from './alertSure';
 import { useState } from 'react';
+import { salaryAfterTax } from '@/stores';
 
 export const AddIncomeForm = () => {
   const [tab, setTab] = useState('input');
@@ -69,8 +70,6 @@ export const AddIncomeForm = () => {
             parseOrZero(contract) * 0.6 +
             parseOrZero(other) * 0.6;
 
-    window.location.href = '/homes';
-
     const inputData = {
       Salary: salary,
       Royalty: royalty,
@@ -97,6 +96,7 @@ export const AddIncomeForm = () => {
     console.log(JSON.stringify(inputData, null, 2));
     console.log(JSON.stringify(inputDataFile, null, 2));
     console.log(localStorage.getItem('salaryAfterTax'));
+    // window.location.href = '/homes';
   };
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,

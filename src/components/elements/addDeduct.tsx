@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import {
-  Wallet,
   User,
   Users,
   Baby,
@@ -11,7 +10,6 @@ import {
   Shrub,
   Landmark,
   ShieldCheck,
-  StickyNote,
   Paperclip,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,10 +34,10 @@ const deductTypes = [
 
 export const AddDeductForm = () => {
   const [tab, setTab] = useState('input');
-
+  
   // Initialize deduct and files state
-  const initialDeductState = {};
-  const initialFilesState = {};
+  const initialDeductState: { [key: string]: string } = {};
+  const initialFilesState: { [key: string]: File | null } = {};
 
   for (const type of deductTypes) {
     initialDeductState[type.key] = '';
@@ -50,41 +48,45 @@ export const AddDeductForm = () => {
   const [files, setFiles] = useState(initialFilesState);
   const [openAlert, setOpenAlert] = useState(false);
 
-  const parseOrZero = (value) => Number.parseFloat(value) || 0;
+  const parseOrZero = (value: string) => Number.parseFloat(value) || 0;
 
   const handleSubmitted = () => {
     let totalDeduction = 0;
+    const addIncome = parseOrZero(localStorage.getItem('addIncome') || '0');
+    console.log('Additional Income:', addIncome);
 
     // Calculate total deduction using for...of loop
     for (const type of deductTypes) {
-      const value = parseOrZero(deduct[type.key]);
+      let value = parseOrZero(deduct[type.key]);
+      if (type.key === 'donation') {
+        value = Math.min(value, addIncome * 0.1); // Ensure donation does not exceed 10% of addIncome
+      }
       const limitedValue = Math.min(value, type.max);
       totalDeduction += limitedValue;
     }
 
     // Store the calculated data
-    const inputData: { [key: string]: string | number } = {};
+    const inputData: { [key: string]: string } = {};
     for (const type of deductTypes) {
       inputData[type.key] = deduct[type.key];
     }
-    inputData.calculated = totalDeduction;
+    inputData.calculated = totalDeduction.toString();
 
-    const inputDataFile = {};
+    const inputDataFile: { [key: string]: string | null } = {};
     for (const type of deductTypes) {
       inputDataFile[`${type.key}File`] = files[type.key]?.name || null;
     }
 
     console.log('Deductions Data:', JSON.stringify(inputData, null, 2));
     console.log('Uploaded Files:', JSON.stringify(inputDataFile, null, 2));
-    console.log('Total Deduction:', totalDeduction);
 
     // Save total deduction to localStorage
-    localStorage.setItem('TotalDeduction', totalDeduction.toString());
-
-    window.location.href = '/homes';
+    localStorage.setItem('deduction', totalDeduction.toString());
+    console.log('Total Deduction saved to localStorage:', totalDeduction);
+    // window.location.href = '/homes';
   };
 
-  const handleFileChange = (event, key) => {
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>, key: string) => {
     const file = event.target.files?.[0] || null;
     setFiles((prevFiles) => ({ ...prevFiles, [key]: file }));
   };
