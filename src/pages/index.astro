@@ -1,11 +1,8 @@
 ---
-import { Counter } from '@/components/elements/counting';
-import Layout from '../layouts/Layout.astro';
-import AddIncome from './add-income.astro';
+import LoginForm from '@/components/elements/loginform';
+import Loginlayout from '@/layouts/loginlayout.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<AddIncome/>
-	</main>
-</Layout>
+<Loginlayout title="Login">
+    <LoginForm client:load/>
+</Loginlayout>

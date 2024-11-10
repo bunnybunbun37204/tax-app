@@ -1,0 +1,13 @@
+---
+import UserdataComponent from '@/components/elements/userdata_component';
+import Layout from '../layouts/Layout.astro';
+import Loginlayout from '@/layouts/loginlayout.astro';
+---
+
+<Layout title="userdata">
+    <div>
+        <div class="mx-4 w-[350px] text-blood text-xl font-semibold font-['Noto Sans Thai'] font-notosansthai leading-7 my-6">กรอกข้อมูลผู้เสียภาษี</div>
+        <UserdataComponent  client:load />
+    </div>
+    
+</Layout>
