@@ -38,7 +38,7 @@ const navigateUserData = () => {
 const message = ref('คลิกเพื่อเริ่มการคำนวณภาษี');
 const animatedTax = ref(0);
 
-const salaryAfterTax = Number.parseFloat(localStorage.getItem('salaryAfterTax') ?? '0');
+const salaryAfterTax = Number.parseFloat(localStorage.getItem('salaryAfterCal') ?? '0');
 const totalDeduction =
   Number.parseFloat(localStorage.getItem('Deduction') ?? '0') +
   Number.parseFloat(localStorage.getItem('deduction') ?? '0');
@@ -48,6 +48,7 @@ const calculatedTax = ref(0);
 
 const calculateTax = () => {
   let taxableIncome = Math.max(salaryAfterTax - totalDeduction, 0);
+  console.log(taxableIncome);
   let tax = 0;
 
   if (taxableIncome > 5000000) {

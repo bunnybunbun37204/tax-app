@@ -60,15 +60,12 @@ export const AddIncomeForm = () => {
       parseOrZero(contract);
 
     const calculated =
-      parseOrZero(salary) * 0.5 > 100000
-        ? 100000
-        : parseOrZero(salary) + parseOrZero(royalty) * 0.5 > 100000
-          ? 100000
-          : parseOrZero(royalty) +
-            parseOrZero(rent) * 0.2 +
-            parseOrZero(freelance) * 0.45 +
-            parseOrZero(contract) * 0.6 +
-            parseOrZero(other) * 0.6;
+      (parseOrZero(salary) * 0.5 > 100000 ? 100000 : parseOrZero(salary)) +
+      (parseOrZero(royalty) * 0.5 > 100000 ? 100000 : parseOrZero(royalty)) +
+      parseOrZero(rent) * 0.2 +
+      parseOrZero(freelance) * 0.45 +
+      parseOrZero(contract) * 0.6 +
+      parseOrZero(other) * 0.6;
 
     const inputData = {
       Salary: salary,
@@ -91,12 +88,11 @@ export const AddIncomeForm = () => {
       OtherFile: files.otherFile?.name,
     };
 
-    localStorage.setItem('salaryAfterTax', `${sumSalary - calculated}`);
-    localStorage.setItem('salary', `${sumSalary}`);
+    localStorage.setItem('salaryAfterCal', `${sumSalary - calculated}`);
 
     console.log(JSON.stringify(inputData, null, 2));
     console.log(JSON.stringify(inputDataFile, null, 2));
-    console.log(localStorage.getItem('salaryAfterTax'));
+    console.log(localStorage.getItem('salaryAfterCal'));
     window.location.href = '/homes';
   };
   const handleFileChange = (
