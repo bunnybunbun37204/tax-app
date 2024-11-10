@@ -81,7 +81,7 @@ export const AddDeductForm = () => {
     // Save total deduction to localStorage
     localStorage.setItem('deduction', totalDeduction.toString());
     console.log('Total Deduction saved to localStorage:', totalDeduction);
-    // window.location.href = '/homes';
+    window.location.href = '/homes';
   };
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>, key: string) => {

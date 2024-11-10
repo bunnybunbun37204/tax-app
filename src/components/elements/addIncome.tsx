@@ -96,7 +96,7 @@ export const AddIncomeForm = () => {
     console.log(JSON.stringify(inputData, null, 2));
     console.log(JSON.stringify(inputDataFile, null, 2));
     console.log(localStorage.getItem('salaryAfterTax'));
-    // window.location.href = '/homes';
+    window.location.href = '/homes';
   };
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,
