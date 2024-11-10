@@ -50,4 +50,13 @@
     background-size: cover;
     background-position: center;
   }
+  .border-gradient-to-b {
+    background: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
+    padding: 2px;
+    border-radius: 50%;
+  }
+  .border-gradient-to-b .bg-white {
+    border-radius: 50%;
+    background-color: white;
+  }
 }
