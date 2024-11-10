@@ -14,12 +14,12 @@ export function DetailHome() {
   ).toLocaleString();
 
   return (
-    <Accordion type="single" collapsible className="w-full space-y-4">
-      <AccordionItem value="income" className="shadow-md rounded-xl">
-        <AccordionTrigger className="flex justify-between items-center bg-white p-4 text-lg font-semibold border-b border-gray-300">
+    <Accordion type="multiple" className="w-full space-y-4">
+      <AccordionItem value="income" className="shadow-md rounded-xl overflow-hidden">
+        <AccordionTrigger className="flex justify-between items-center bg-white p-4 text-lg font-semibold border-b border-gray-300 rounded-t-xl">
           <span>รายได้</span>
         </AccordionTrigger>
-        <AccordionContent className="p-4 bg-white flex justify-between items-center">
+        <AccordionContent className="p-4 bg-white flex justify-between items-center rounded-b-xl">
           <div className="flex items-center gap-2 text-gray-500">
             <Landmark className="w-5 h-5 text-black" />
             <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>
@@ -30,11 +30,11 @@ export function DetailHome() {
         </AccordionContent>
       </AccordionItem>
 
-      <AccordionItem value="expense" className="shadow-md rounded-xl">
-        <AccordionTrigger className="flex justify-between items-center bg-white p-4 text-lg font-semibold border-b border-gray-300">
+      <AccordionItem value="expense" className="shadow-md rounded-xl overflow-hidden">
+        <AccordionTrigger className="flex justify-between items-center bg-white p-4 text-lg font-semibold border-b border-gray-300 rounded-t-xl">
           <span>ลดหย่อน</span>
         </AccordionTrigger>
-        <AccordionContent className="p-4 bg-white flex justify-between items-center">
+        <AccordionContent className="p-4 bg-white flex justify-between items-center rounded-b-xl">
           <div className="flex items-center gap-2 text-gray-500">
             <Landmark className="w-5 h-5 text-black" />
             <span className="text-base text-black font-normal font-notosansthai">รวมทั้งปี 2024</span>
