@@ -43,6 +43,8 @@ const totalDeduction =
   Number.parseFloat(localStorage.getItem('Deduction') ?? '0') +
   Number.parseFloat(localStorage.getItem('TotalDeduction') ?? '0');
 
+console.log(totalDeduction);
+
 const sizeText = ref('text-xl');
 const calculatedTax = ref(0);
 
