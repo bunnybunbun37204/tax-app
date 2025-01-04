@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/react": "^3.6.2",
-    "@astrojs/tailwind": "^5.1.2",
-    "@astrojs/vue": "^4.5.2",
+    "@astrojs/react": "4.1.2",
+    "@astrojs/tailwind": "5.1.4",
+    "@astrojs/vue": "^5.0.4",
     "@nanostores/react": "^0.8.0",
+    "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-menubar": "^1.1.2",
-    "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
@@ -33,7 +33,7 @@
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "astro": "^4.16.8",
+    "astro": "5.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -46,7 +46,7 @@
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.6.3",
-    "vue": "^3.5.12"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
